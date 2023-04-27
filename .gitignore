@@ -5,3 +5,4 @@ docs/_build
 *.log
 *.vscode
 *.html
+config.json
