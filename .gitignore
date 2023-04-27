@@ -1,0 +1,5 @@
+.idea/
+__pycache__
+docs/_build
+*.pyc
+*.log
