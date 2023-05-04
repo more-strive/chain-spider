@@ -49,7 +49,7 @@ def downloadFile(chain, filename):
     region_name=AWS_DEFAULT_REGION
   )
   s3 = session.client("s3")
-  s3.get_object()
+  s3.download_file(Bucket=AWS_BUCKET, Key=f"{chain}/{filename}", Filename='./html/icon/%s' % filename)
 
 def get_icon(chain, address, url):
   proxy = get_proxy().get("proxy")
@@ -60,6 +60,7 @@ def get_icon(chain, address, url):
   with open(filepath, "wb") as wf:
     wf.write(response.content)
   uploadFile(chain, filepath, filename)
+  downloadFile(chain, filename)
   return True
 
 if __name__ == "__main__":
