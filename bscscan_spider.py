@@ -56,7 +56,7 @@ def bscscanSpider(address='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'):
         content = socialSonElement.attrib.get('data-original-title')
         value = content.split(': ')
         data[value[0]] = value[1].strip()
-  common.get_icon('bscscan', address, base_url + data.get('iconSrc'))
+  data['iconUrl'] = common.get_icon_aws('bscscan', address, base_url + data.get('iconSrc'))
   return data
   
 if __name__ == '__main__':

@@ -51,7 +51,10 @@ def downloadFile(chain, filename):
   s3 = session.client("s3")
   s3.download_file(Bucket=AWS_BUCKET, Key=f"{chain}/{filename}", Filename='./html/icon/%s' % filename)
 
-def get_icon(chain, address, url):
+def get_icon_aws(chain, address, url):
+  """
+  https://winfishapp.s3.ap-southeast-1.amazonaws.com/bscscan/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c_logo.png
+  """
   proxy = get_proxy().get("proxy")
   response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers, stream=True)
   suffix = os.path.splitext(url)[1].replace('.', '')
@@ -60,8 +63,8 @@ def get_icon(chain, address, url):
   with open(filepath, "wb") as wf:
     wf.write(response.content)
   uploadFile(chain, filepath, filename)
-  downloadFile(chain, filename)
-  return True
+  download_url = "https://%s.s3.ap-southeast-1.amazonaws.com/%s/%s" % (AWS_BUCKET, chain, filename)
+  return download_url
 
 if __name__ == "__main__":
   uploadFile()

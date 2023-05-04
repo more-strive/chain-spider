@@ -43,7 +43,7 @@ def etherscanSpider(address='0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'):
         socialSonElement = socialSonXpath[0]
         content = socialSonElement.attrib.get('href')
         data[index] = content
-  common.get_icon('etherscan', address, base_url + data.get('iconSrc'))
+  data['iconUrl'] = common.get_icon_aws('etherscan', address, base_url + data.get('iconSrc'))
   return data
   
 if __name__ == '__main__':
