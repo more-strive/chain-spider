@@ -2,9 +2,12 @@ import common
 from lxml import etree
 
 def etherscanSpider(address='0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'):
-  url = 'https://etherscan.io/token/%s#balances' % address
+  base_url = 'https://etherscan.io'
+  url = '%s/token/%s#balances' % (base_url, address) 
   data = {}
   response = common.get_response(url)
+  if not response:
+    return data
   if response.status_code != 200:
     return data
   selecter = etree.HTML(response.text)
@@ -40,6 +43,7 @@ def etherscanSpider(address='0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'):
         socialSonElement = socialSonXpath[0]
         content = socialSonElement.attrib.get('href')
         data[index] = content
+  common.get_icon('etherscan', address, base_url + data.get('iconSrc'))
   return data
   
 if __name__ == '__main__':

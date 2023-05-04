@@ -1,5 +1,7 @@
 import os
 import requests
+import boto3
+from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT, AWS_DEFAULT_REGION, AWS_BUCKET
 
 headers = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
@@ -27,10 +29,38 @@ def get_response(url):
   delete_proxy(proxy)
   return None
 
-def get_icon(address, url):
+def uploadFile(chain, filepath, filename):
+  if filename is None:
+    raise ValueError("Please enter a valid and complete file path")
+
+  session = boto3.Session(
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_DEFAULT_REGION
+  )
+  s3 = session.client("s3")
+  s3.upload_file(Filename=filepath, Key=f"{chain}/{filename}", Bucket=AWS_BUCKET)
+  os.remove(filepath)
+
+def downloadFile(chain, filename):
+  session = boto3.Session(
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_DEFAULT_REGION
+  )
+  s3 = session.client("s3")
+  s3.get_object()
+
+def get_icon(chain, address, url):
   proxy = get_proxy().get("proxy")
   response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers, stream=True)
-  suffix = os.path.splitext(url)[1]
-  with open('./html/icon/%s_logo.%s' % (address, suffix), "wb") as wf:
+  suffix = os.path.splitext(url)[1].replace('.', '')
+  filename = '%s_logo.%s' % (address, suffix)
+  filepath = './html/icon/%s' % filename
+  with open(filepath, "wb") as wf:
     wf.write(response.content)
+  uploadFile(chain, filepath, filename)
   return True
+
+if __name__ == "__main__":
+  uploadFile()

@@ -1,8 +1,9 @@
+import os
 import boto3
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT, AWS_DEFAULT_REGION, AWS_BUCKET
 
 
-def uploadFileToS3(chain, filename):
+def uploadFileToS3(chain, filepath, filename):
   if filename is None:
     raise ValueError("Please enter a valid and complete file path")
 
@@ -12,8 +13,8 @@ def uploadFileToS3(chain, filename):
     region_name=AWS_DEFAULT_REGION
   )
   s3 = session.client("s3")
-  s3.upload_file(Filename=filename, Key=f"{chain}/{filename}", Bucket=AWS_BUCKET)
-
+  s3.upload_file(Filename=filepath, Key=f"{chain}/{filename}", Bucket=AWS_BUCKET)
+  os.remove(filepath)
 
 if __name__ == "__main__":
   uploadFileToS3()

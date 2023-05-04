@@ -1,5 +1,5 @@
 import uvicorn
-import binance_spider
+import bscscan_spider
 import etherscan_spider
 from fastapi import FastAPI
 
@@ -9,7 +9,7 @@ app = FastAPI()
 async def main(chain: str, address: str):
   data = None
   if chain == 'binance':
-    data = binance_spider.binanceSpider(address)
+    data = bscscan_spider.bscscanSpider(address)
   elif chain == 'etherscan':
     data = etherscan_spider.etherscanSpider(address)
   return {"chain": chain, 'address': address, 'data': data}

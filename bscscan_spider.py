@@ -1,7 +1,7 @@
 import common
 from lxml import etree
 
-def binanceSpider(address='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'):
+def bscscanSpider(address='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'):
   base_url = 'https://bscscan.com'
   url = '%s/token/%s#balances' % (base_url, address)
   data = {}
@@ -56,8 +56,8 @@ def binanceSpider(address='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'):
         content = socialSonElement.attrib.get('data-original-title')
         value = content.split(': ')
         data[value[0]] = value[1].strip()
-  common.get_icon(address, base_url + data.get('iconSrc'))
+  common.get_icon('bscscan', address, base_url + data.get('iconSrc'))
   return data
   
 if __name__ == '__main__':
-  print(binanceSpider())
+  print(bscscanSpider())
