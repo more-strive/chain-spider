@@ -1,4 +1,9 @@
+import os
 import requests
+
+headers = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+}
 
 def get_proxy():
   return requests.get("http://localhost:5000/get/").json()
@@ -22,6 +27,10 @@ def get_response(url):
   delete_proxy(proxy)
   return None
 
-headers = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
-}
+def get_icon(address, url):
+  proxy = get_proxy().get("proxy")
+  response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers, stream=True)
+  suffix = os.path.splitext(url)[1]
+  with open('./html/icon/%s_logo.%s' % (address, suffix), "wb") as wf:
+    wf.write(response.content)
+  return True
