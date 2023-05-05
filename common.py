@@ -83,7 +83,7 @@ def get_icon_aws(chain, address, url):
   filepath = './html/icon/%s' % filename
   with open(filepath, "wb") as wf:
     wf.write(response.content)
-  uploadFile(chain, filepath, filename)
+    uploadFile(chain, filepath, filename)
   download_url = "https://%s.s3.ap-southeast-1.amazonaws.com/%s" % (AWS_BUCKET, filename)
   return download_url
 
