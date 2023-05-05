@@ -2,7 +2,7 @@ import uvicorn
 import bscscan_spider
 import etherscan_spider
 from fastapi import FastAPI
-
+from common import HOST, PORT
 app = FastAPI()
 
 @app.get("/api/chain/data")
@@ -17,4 +17,4 @@ async def main(chain: str, address: str):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app='main:app', host="192.168.1.103", port=8000, reload=True)
+    uvicorn.run(app='main:app', host=HOST, port=PORT, reload=True)
