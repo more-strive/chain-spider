@@ -11,7 +11,16 @@ headers = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
   "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
   "Cookie": "__stripe_mid=81a97fdf-a7e9-4ab3-bf16-64e4d6da71b173c2e1; _ga=GA1.1.503658053.1681522399; bitmedia_fid=eyJmaWQiOiIxNzk0ODQzMGMwOGRkZTYyMTFkYTRjZDMyNTBkZDgyNiIsImZpZG5vdWEiOiIwMmJhOTM3ZDVjMzE4ZmYzOTU0ZDNlYmYzYTIxNDM1YiJ9; ASP.NET_SessionId=3wdtz4qqnsqngeoi0s2vwhor; __cflb=0H28vyb6xVveKGjdV3CFc257Dfrj7qvniLCWeB9BSo6; __cf_bm=l2AcNO_TaP21hoB.kOTvFxIBsK1KJEawMAXUbu7MC5M-1683254914-0-ATP130KdXERfgsmYSCW+TWhkbjfHWAVAo5+oRK0DIZR0R7beSrQ8ul5McGTrFDTeUndW94wUsPHRvtai7GCMVgsN622+4RFp0w1+P2hbD9v2; _ga_PQY6J2Q8EP=GS1.1.1683254911.9.1.1683256144.0.0.0",
-  "path": "/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  # "path": "/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  "pragma": 'no-cache',
+  "sec-ch-ua": '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
+  "sec-ch-ua-mobile": '?0',
+  "sec-ch-ua-platform": 'Windows',
+  "sec-fetch-dest": 'document',
+  "sec-fetch-mode": 'navigate',
+  "sec-fetch-site": 'same-origin',
+  "sec-fetch-user": '?1',
+  "upgrade-insecure-requests": '1',
 }
 
 def get_proxy():
