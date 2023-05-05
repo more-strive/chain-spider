@@ -32,6 +32,7 @@ def get_response(url):
       response = requests.get(url, proxies={"http": "{}".format(proxy)}, headers=headers)
       # session = pyhttpx.HttpSession()
       # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
+      print('response:', response)
       return response
     except Exception:
       retry_count -= 1
