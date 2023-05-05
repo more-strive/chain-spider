@@ -1,7 +1,7 @@
 import os
-import requests
-import pyhttpx
+# import requests
 import boto3
+from curl_cffi import requests
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT, AWS_DEFAULT_REGION, AWS_BUCKET
 
 HOST = "127.0.0.1"
