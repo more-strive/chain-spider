@@ -60,7 +60,7 @@ def uploadFile(chain, filepath, filename):
   )
   s3 = session.client("s3")
   s3.upload_file(Filename=filepath, Key=f"{filename}", Bucket=AWS_BUCKET, ExtraArgs = { 'ACL' : 'public-read' })
-  os.remove(filepath)
+  # os.remove(filepath)
 
 def downloadFile(chain, filename):
   session = boto3.Session(
