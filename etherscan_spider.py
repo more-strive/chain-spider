@@ -6,6 +6,7 @@ def etherscanSpider(address='0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'):
   url = '%s/token/%s#balances' % (base_url, address) 
   data = {}
   response = common.get_response(url)
+  print('eth:', response.content)
   if not response:
     return data
   if response.status_code != 200:
