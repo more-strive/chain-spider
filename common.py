@@ -1,5 +1,4 @@
 import os
-# import requests
 import boto3
 from curl_cffi import requests
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT, AWS_DEFAULT_REGION, AWS_BUCKET
@@ -38,7 +37,7 @@ def get_response(url):
   #   wf.write(response.text)
   while retry_count > 0:
     try:
-      response = requests.get(url=url, proxies={"http": "{}".format(proxy)}, headers=headers, impersonate='chrome101')
+      response = requests.get(url=url, headers=headers, impersonate='chrome101')
       # session = pyhttpx.HttpSession()
       # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       print('response:', response)
@@ -75,6 +74,7 @@ def get_icon_aws(chain, address, url):
   """
   https://winfishapp.s3.ap-southeast-1.amazonaws.com/bscscan/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c_logo.png
   """
+  import requests 
   proxy = get_proxy().get("proxy")
   response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers, stream=True)
   suffix = os.path.splitext(url)[1].replace('.', '')
