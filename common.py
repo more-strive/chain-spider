@@ -78,12 +78,12 @@ def get_icon_aws(chain, address, url):
   
   proxy = get_proxy().get("proxy")
   response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers, stream=True)
-  suffix = os.path.splitext(url)[1].replace('.', '')
-  filename = '%s_logo.%s' % (address, suffix)
+  suffix = os.path.splitext(url)[1]
+  filename = '%s_logo%s' % (address, suffix)
   filepath = './html/icon/%s' % filename
   with open(filepath, "wb") as wf:
     wf.write(response.content)
-    uploadFile(chain, filepath, filename)
+  uploadFile(chain, filepath, filename)
   download_url = "https://%s.s3.ap-southeast-1.amazonaws.com/%s" % (AWS_BUCKET, filename)
   return download_url
 
