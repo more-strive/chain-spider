@@ -34,7 +34,8 @@ def get_response(url):
       # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       print('response:', response)
       return response
-    except Exception:
+    except Exception as er:
+      print('er:', er)
       retry_count -= 1
   delete_proxy(proxy)
   return None
