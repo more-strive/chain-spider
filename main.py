@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/api/chain/data")
 async def main(chain: str, address: str):
   data = None
-  if chain == 'binance':
+  if chain == 'bscscan':
     data = bscscan_spider.bscscanSpider(address)
   elif chain == 'etherscan':
     data = etherscan_spider.etherscanSpider(address)
