@@ -10,7 +10,7 @@ def bscscanSpider(address='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'):
     return data
   with open('./html/bscscan.html', 'w', encoding='utf-8') as wf:
     wf.write(response.text)
-  
+  print('response.status_code:', response.status_code)
   if response.status_code != 200:
     return data
   # with open('./html/binance.html', 'w', encoding='utf-8') as wf:
