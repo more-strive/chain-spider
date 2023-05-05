@@ -1,5 +1,6 @@
 import os
 import requests
+import pyhttpx
 import boto3
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT, AWS_DEFAULT_REGION, AWS_BUCKET
 
@@ -25,7 +26,9 @@ def get_response(url):
   #   wf.write(response.text)
   while retry_count > 0:
     try:
-      response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers)
+      # response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers)
+      session = pyhttpx.HttpSession()
+      response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       return response
     except Exception:
       retry_count -= 1
