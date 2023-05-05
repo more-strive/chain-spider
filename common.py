@@ -8,7 +8,9 @@ HOST = "127.0.0.1"
 PORT = 8234
 
 headers = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+  "Cookie": "__stripe_mid=81a97fdf-a7e9-4ab3-bf16-64e4d6da71b173c2e1; _ga=GA1.1.503658053.1681522399; bitmedia_fid=eyJmaWQiOiIxNzk0ODQzMGMwOGRkZTYyMTFkYTRjZDMyNTBkZDgyNiIsImZpZG5vdWEiOiIwMmJhOTM3ZDVjMzE4ZmYzOTU0ZDNlYmYzYTIxNDM1YiJ9; ASP.NET_SessionId=3wdtz4qqnsqngeoi0s2vwhor; __cflb=0H28vyb6xVveKGjdV3CFc257Dfrj7qvniLCWeB9BSo6; _ga_PQY6J2Q8EP=GS1.1.1683254911.9.0.1683254911.0.0.0; __cf_bm=l2AcNO_TaP21hoB.kOTvFxIBsK1KJEawMAXUbu7MC5M-1683254914-0-ATP130KdXERfgsmYSCW+TWhkbjfHWAVAo5+oRK0DIZR0R7beSrQ8ul5McGTrFDTeUndW94wUsPHRvtai7GCMVgsN622+4RFp0w1+P2hbD9v2"
 }
 
 def get_proxy():
@@ -26,9 +28,9 @@ def get_response(url):
   #   wf.write(response.text)
   while retry_count > 0:
     try:
-      # response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers)
-      session = pyhttpx.HttpSession()
-      response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
+      response = requests.get(url, proxies={"http": "http://{}".format(proxy)}, headers=headers)
+      # session = pyhttpx.HttpSession()
+      # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       return response
     except Exception:
       retry_count -= 1
