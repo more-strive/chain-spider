@@ -59,7 +59,7 @@ def uploadFile(chain, filepath, filename):
     region_name=AWS_DEFAULT_REGION
   )
   s3 = session.client("s3")
-  s3.upload_file(Filename=filepath, Key=f"{chain}/{filename}", Bucket=AWS_BUCKET)
+  s3.upload_file(Filename=filepath, Key=f"{filename}", Bucket=AWS_BUCKET)
   os.remove(filepath)
 
 def downloadFile(chain, filename):
@@ -84,7 +84,7 @@ def get_icon_aws(chain, address, url):
   with open(filepath, "wb") as wf:
     wf.write(response.content)
   uploadFile(chain, filepath, filename)
-  download_url = "https://%s.s3.ap-southeast-1.amazonaws.com/%s/%s" % (AWS_BUCKET, chain, filename)
+  download_url = "https://%s.s3.ap-southeast-1.amazonaws.com/%s" % (AWS_BUCKET, filename)
   return download_url
 
 if __name__ == "__main__":
