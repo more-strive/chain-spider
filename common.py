@@ -37,7 +37,7 @@ def get_response(url):
   #   wf.write(response.text)
   while retry_count > 0:
     try:
-      response = requests.get(url=url, headers=headers, proxies={"https": "https://{}".format(proxy)}, impersonate='chrome101', verify=False)
+      response = requests.get(url=url, headers=headers, proxies={"https": "http://{}".format(proxy)}, impersonate='chrome101', verify=False)
       # session = pyhttpx.HttpSession()
       # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       print('response:', response)
