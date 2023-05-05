@@ -32,12 +32,12 @@ def get_response(url):
   # url = 'https://bscscan.com/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c#balances'
   proxy = get_proxy().get("proxy")
   
-  retry_count = 5
+  retry_count = 3
   # with open('./html/binance.html', 'w', encoding='utf-8') as wf:
   #   wf.write(response.text)
   while retry_count > 0:
     try:
-      response = requests.get(url=url, headers=headers, proxies={"https": "http://{}".format(proxy)}, impersonate='chrome101', verify=False)
+      response = requests.get(url=url, headers=headers, proxies={"https": "http://{}".format(proxy)}, impersonate='chrome101', verify=False, timeout=300)
       # session = pyhttpx.HttpSession()
       # response = session.get(url=url, headers=headers, proxies={"http": "http://{}".format(proxy)})
       print('response:', response)
