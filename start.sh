@@ -1,0 +1,1 @@
+python gunicorn main:app -b 127.0.0.1:8234 -w 4 -k uvicorn.workers.UvicornH11Worker --reload
